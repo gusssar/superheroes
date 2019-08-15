@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Header } from '../components/Header';
 import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
+import { setNumberOfHero } from '../actions/ListActions';
 import MakeReq from './Server';
 
 import './App.css';
@@ -12,14 +13,14 @@ class App extends React.Component{
 
   
   render(){
-    
+    const { list, setNumberOfHeroActions } = this.props;
     /**
      * надо сделать, что бы рендер ждал 
      * пока не подгрузятся в localStorage
      * все файлы
      */
 
-    if(this.props.download){
+    if(list.download){
       MakeReq();
     }
  
@@ -27,18 +28,27 @@ class App extends React.Component{
     return(
       <div className='app'>
           <Header />
-          <List />
-          <SideBarFilter />
+          <List list={list}/>
+          <SideBarFilter setNumberOfHero={setNumberOfHeroActions}/>
       </div>
     )
   }
 }
 
-const mapSateToProps = store => {
+const mapStateToProps = store => {
   console.log(store);
   return {
-    download: store.list,
+    list: store.list,
   }
 }
 
-export default connect(mapSateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return{
+    setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(App);

@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Item } from './Item';
 
 export class List extends React.Component{
     render(){
 
+        const { list } = this.props;
+        console.log('Class List downloads is', list.download);
         let data =[];
 
         for (let id in localStorage){
@@ -23,4 +26,8 @@ export class List extends React.Component{
             </div>
         )
     }
+}
+
+List.propTypes = {
+    list: PropTypes.object.isRequired,
 }
