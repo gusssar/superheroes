@@ -9,7 +9,12 @@ export class SideBarFilter extends React.Component{
     }
     onLoadClick = () => {
         this.props.LoadList();
-        this.props.GetDataList();
+        console.log(this.props.data.data.length)
+        let start = this.props.data.data.length+1;
+        let end = start + 11;
+        if(end<702){
+            this.props.GetDataList(start, end);
+        }
     }
     render(){
         const { isFetching } = this.props;
@@ -30,4 +35,5 @@ SideBarFilter.propTypes = {
     LoadList: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     GetDataList: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
 }

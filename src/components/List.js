@@ -3,20 +3,26 @@ import PropTypes from 'prop-types';
 import { Item } from './Item';
 
 export class List extends React.Component{
-    render(){
 
-        const { list } = this.props;
-        console.log('Class List downloads is', list.download);
-        let data =[];
-
-        for (let id in localStorage){
-            if(localStorage.getItem(id)){
-                data.push(id)}
+    // для первого инита подгружаем начальные данные
+    // 12 персонажей
+    componentDidMount(){
+        if(this.props.data.isInit){
+            this.props.GetDataList(1, 12);
         }
+    }
 
-        const item = data.map((id) =>
-            <div key={id} style={{width:'240px', display:'inline-block'}}>
-                {<Item id={id}/>}
+    render(){
+        //принимаем пропс объекта
+        const { data } = this.props;
+
+        //если это первый инит ставим прелоадер
+        //иначе разбираем массив из стора
+        const item = (data.isInit)?
+        <p>Загрузка...</p>:
+        data.data.map((el,i) =>
+            <div key={i} style={{width:'240px', display:'inline-block'}}>
+                <Item item={el}/>
             </div>
     );
         
@@ -29,5 +35,6 @@ export class List extends React.Component{
 }
 
 List.propTypes = {
-    list: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    GetDataList: PropTypes.func.isRequired,
 }

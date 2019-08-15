@@ -12,32 +12,23 @@ import './App.css';
 
 
 class App extends React.Component{
-
   
   render(){
     const { 
-      list,
+      // list,
       data, 
       setNumberOfHeroActions, 
       LoadListAction,
       DataLoadListAction } = this.props;
-    /**
-     * надо сделать, что бы рендер ждал 
-     * пока не подгрузятся в localStorage
-     * все файлы
-     */
-
-    // if(list.download){
-    //   console.log('--загрузка началась--');
-    //   MakeReq();
-    // }
  
-
     return(
       <div className='app'>
           <Header />
-          <List list={list}/>
+          <List 
+            data={data}
+            GetDataList={DataLoadListAction}/>
           <SideBarFilter 
+            data={data}
             setNumberOfHero={setNumberOfHeroActions} 
             LoadList={LoadListAction}
             isFetching={data.isFetching}
@@ -59,7 +50,7 @@ const mapDispatchToProps = dispatch => {
   return{
     setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
     LoadListAction: () => dispatch(LoadList()),
-    DataLoadListAction: () => dispatch(NeedGetRequest(1,10)),
+    DataLoadListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
   }
 }
 

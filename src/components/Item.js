@@ -2,18 +2,18 @@ import React from 'react';
 
 export class Item extends React.Component{
     render(){
-        const { id } = this.props;
+        const { item } = this.props;
         //вся инфа что пришла
-        const item_data=JSON.parse(localStorage.getItem(id));
+        // const item_data=JSON.parse(localStorage.getItem(id));
 
         const img=
             <div>
                 <img 
-                    src={item_data.image.url} 
-                    alt={item_data.name}
+                    src={item.image.url} 
+                    alt={item.name}
                     width={'220px'} />
             </div>
-        const name = item_data.name
+        const name = item.name
 
         return(
             <div className='item'>
