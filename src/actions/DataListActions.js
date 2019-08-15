@@ -4,45 +4,45 @@
 export const START_LOAD_LIST = 'START_LOAD_LIST';
 export const FINISH_LOAD_LIST = 'FINISH_LOAD_LIST';
 
-function GetRequest(i){
-    // console.log('--запросы---')
-    const reqURL = 'https://www.superheroapi.com/api.php/2304427089625919/';
-    const obj={};
-    fetch(reqURL+i,{mode:'cors'})
-        .then(response =>response.json())
-        .then(_answ =>{
-            console.log(_answ)
-            this._obj[_answ.id]=_answ;
-        })
-    return obj;
+let cached = false;
+let arr = [];
+
+const reqURL = 'https://www.superheroapi.com/api.php/2304427089625919/';
+function GetRequest(i,n,dispatch){
+        return fetch(reqURL+i,{mode:'cors'})
+                .then(response =>response.json())
+                .then(_json =>{
+                    arr.push(_json);
+                    if(i<=n){
+                        console.log('---ифак тру---',i)
+                        i++;
+                        GetRequest(i,n,dispatch);
+                    } else {
+                        console.log('---ифак фолс---')
+                        cached=true;
+                        dispatch({
+                            type: FINISH_LOAD_LIST,
+                            playload: arr,
+                        })
+                    }
+                })
 }
 
-function GetMoreRequest(i=1,n=2){
-    const data={};
-    for(i; i<n; i++){
-        let _data = GetRequest(i);
-        data[_data.id] = _data;
-    }
-}
-
-export function GetDataList(i=2){
-    //не больше 20-ти иначе сервер не справляется
-    let _obj={}
-    const reqURL = 'https://www.superheroapi.com/api.php/2304427089625919/';
+export function NeedGetRequest(i,n){
     return dispatch => {
         dispatch({
             type: START_LOAD_LIST,
         })
-        // GetMoreRequest(dispatch)
-        return fetch(reqURL+i,{mode:'cors'})
-        .then(response =>response.json())
-        .then(_answ =>{
-            console.log(_answ)
-            _obj[_answ.id]=_answ;
+
+        if(cached){
+            //здесь здесь отрендерим
             dispatch({
                 type: FINISH_LOAD_LIST,
-                playload: _obj
+                playload: arr
             })
-        })
+        } else {
+            //запускаем опросник
+            GetRequest(i,n,dispatch)
+        }
     }
 }

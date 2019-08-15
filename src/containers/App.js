@@ -6,7 +6,7 @@ import { SideBarFilter } from '../components/SideBarFilter';
 import { setNumberOfHero } from '../actions/ListActions';
 import { LoadList } from '../actions/ListActions';
 // import MakeReq from './Server';
-import { GetDataList } from '../actions/DataListActions'
+import { NeedGetRequest } from '../actions/DataListActions'
 
 import './App.css';
 
@@ -59,7 +59,7 @@ const mapDispatchToProps = dispatch => {
   return{
     setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
     LoadListAction: () => dispatch(LoadList()),
-    DataLoadListAction: () => dispatch(GetDataList()),
+    DataLoadListAction: () => dispatch(NeedGetRequest(1,10)),
   }
 }
 
