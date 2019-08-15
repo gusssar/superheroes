@@ -1,5 +1,15 @@
-.App {
-  text-align: center;
+.app {
+  color: aliceblue;
+  /* text-align: center; */
   min-height: 100vh;
   background-color: #282c34;
+}
+
+.list{
+  display: inline-block
+}
+.filter{
+  /* display: inline-block; */
+  float: right;
+  width: 100px;
 }
