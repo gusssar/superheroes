@@ -1,23 +1,18 @@
-//-
-// import { SET_NUMBER_OF_HERO } from '../actions/ListActions';
-// import { LOAD_LIST } from '../actions/ListActions';
 import { NEXT_PAGE } from '../actions/ListActions';
 
 export const initialState = {
-    // download : false,
-    // number: 4,
-    viewLine: 4,
-
+    viewLine: 12,
 }
 
 export function displaylistReducer(state = initialState, action){
+    const next = 12; //увеличиваем на 12 пунктов при нажатии на кнопку
     switch (action.type) {
-        // case SET_NUMBER_OF_HERO:
-        //     return {...state, number: action.playload }
-        // case LOAD_LIST:
-        //     return {...state, download: true}
         case NEXT_PAGE:
-            return {...state, viewLine: state.viewLine + 4}
+            if(action.playload-state.viewLine <= next){
+                return {...state, viewLine: action.playload}
+            } else{
+                return {...state, viewLine: state.viewLine + next}
+            }
         default:
             return state
     }

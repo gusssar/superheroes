@@ -6,10 +6,8 @@ import { Input } from '../components/Input/index';
 import { List } from '../components/List/index';
 import { SideBarFilter } from '../components/SideBar/index';
 
-// import { setNumberOfHero } from '../actions/ListActions';
 import { NeedGetRequest } from '../actions/DataListActions'
 
-// import { ChangeInput } from '../actions/InputActions';
 import { SearchInput, CheckFilter } from '../actions/InputActions';
 import { NextPage } from '../actions/ListActions'
 
@@ -26,20 +24,15 @@ class App extends React.Component{
       filter,
       LoadAllListAction,
       NextPageAction,
-      // ChangeInputAction,
       SearchInputAction,
       CheckFilterAction,
-      // ViewListAction,
-      // input,
     } = this.props;
  
     return(
       <div className='app'>
           <Header />
           <Input 
-            // ChangeInput={ChangeInputAction} 
             SearchInput={SearchInputAction}
-            // value={input.value}
             />
           <div className='app__content'>
           <List 
@@ -50,16 +43,10 @@ class App extends React.Component{
             viewLine={viewLine}
             LoadAllList={LoadAllListAction}
             NextPage={NextPageAction}
-            // ViewList={ViewListAction}
             />
           <SideBarFilter 
             CheckFilter={CheckFilterAction}
             keyCheck = {filter}
-            // data={data}
-            // setNumberOfHero={setNumberOfHeroActions} 
-            // LoadList={LoadListAction}
-            // isFetching={data.isFetching}
-            // LoadAllList={LoadAllListAction}
             />
           </div>
       </div>
@@ -68,9 +55,7 @@ class App extends React.Component{
 }
 
 const mapStateToProps = store => {
-  console.log(store);
   return {
-    // list: store.list,
     data: store.data,
     isInit: store.data.isInit,
     value: store.input.value,
@@ -82,11 +67,9 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    // setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
-    NextPageAction: () => dispatch(NextPage()),
+    NextPageAction: (l) => dispatch(NextPage(l)),
     LoadAllListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
     CheckFilterAction: (key) => dispatch(CheckFilter(key)),
-    // ChangeInputAction: (value) => dispatch(ChangeInput(value)),
     SearchInputAction: (value) => dispatch(SearchInput(value))
   }
 }

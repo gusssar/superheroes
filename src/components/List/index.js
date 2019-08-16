@@ -10,7 +10,7 @@ export class List extends React.Component{
     // 12 персонажей
     componentDidMount(){
         if(this.props.isInit){
-            this.props.LoadAllList(1, 20);
+            this.props.LoadAllList(1, 700);
         }
     }
 
@@ -45,11 +45,10 @@ export class List extends React.Component{
         }
 
         //отображем что надо покзать
-        // const need_item = NeedItem(data.data, viewLine)
         const need_item = MapingItem(data.data, viewLine, value, keyCheck);
 
         function onNextPage(){
-            NextPage()
+            NextPage(data.data.length)
         }
 
         //если это первый инит ставим спинер

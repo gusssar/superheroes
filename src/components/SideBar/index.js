@@ -6,27 +6,15 @@ import './index.css';
 
 export class SideBarFilter extends React.Component{
     onBtnClick = e => {
-        const n = +e.currentTarget.innerText;
-        // this.props.setNumberOfHero(n);
-    }
-    onLoadClick = () => {
-        // console.log(this.props.data.data.length)
-        // let start = this.props.data.data.length+1;
-        // let end = start + 11;
-        // if(end<702){
-        //     this.props.LoadAllList(start, end);
-        // }
     }
 
     onChangeCheck = (event)=>{
-        console.log(event.currentTarget.value);
         this.props.CheckFilter(event.currentTarget.value);
     }
 
     render(){
 
         const { keyCheck } = this.props;
-        console.log(keyCheck)
 
         return(
             <div className='sidebar'>
@@ -46,6 +34,4 @@ export class SideBarFilter extends React.Component{
 SideBarFilter.propTypes = {
     CheckFilter: PropTypes.func.isRequired,
     keyCheck: PropTypes.string.isRequired,
-    // LoadAllList: PropTypes.func.isRequired,
-    // data: PropTypes.object.isRequired,
 }

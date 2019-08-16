@@ -1,10 +1,10 @@
 //надо добавить isomorphic-fetch в import
 import { FastGetRequest } from '../utils/getReq';
-// import { VIEW_LIST } from '../actions/InputActions';
 
 export const INITIALISATION = 'INITIALISATION';
 export const SEND_REQUEST = 'SEND_REQUEST';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+export const RETRY_REQUEST = 'RETRY_REQUEST';
 
 let arr = [];
 
@@ -15,7 +15,7 @@ export function NeedGetRequest(i,n){
         })
             //запускаем опросник
             let _arr=FastGetRequest(i,n,arr);
-            //ждём подгрузки данных 2 секунды
+            //ждём подгрузки данных 3 секунды
             setTimeout(()=>{
                 dispatch({
                     type: REQUEST_SUCCESS,
@@ -24,6 +24,13 @@ export function NeedGetRequest(i,n){
                 dispatch({
                     type: INITIALISATION,
                 })
-            },2000)
+            },3000);
+            setTimeout(()=>
+            setInterval(()=>{
+                dispatch({
+                    type: RETRY_REQUEST,
+                    playload: _arr,
+                })
+            },3000),3000)
         }
 }

@@ -1,6 +1,5 @@
 export const CHECK_FILTER = 'CHECK_FILTER';
 export const INPUT_SEARCH = 'INPUT_SEARCH';
-// export const VIEW_LIST = 'VIEW_LIST';
 
 export function CheckFilter(key){
     return dispatch => {
@@ -19,10 +18,3 @@ export function SearchInput(value){
         })
     }
 }
-
-// export function ViewList(value){
-//     return{
-//         type: VIEW_LIST,
-//         playload: value
-//     }
-// }

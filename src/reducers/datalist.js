@@ -2,6 +2,7 @@ import {
     INITIALISATION,
     SEND_REQUEST,
     REQUEST_SUCCESS,
+    RETRY_REQUEST,
 } from '../actions/DataListActions';
 
 //инициализируем начальное состояние
@@ -20,6 +21,8 @@ export function dataListReducer(state = initialState, action){
             return { ...state, isFetching: true }
         case REQUEST_SUCCESS:
             return {...state, data:state.data.concat(action.playload), isFetching: false, isInit: false }
+        case RETRY_REQUEST:
+            return {...state, data:action.playload}
         default:
             return state
     }
