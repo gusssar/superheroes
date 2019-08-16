@@ -1,13 +1,15 @@
-export const INPUT_CHANGE = 'INPUT_CHANGE';
+export const CHECK_FILTER = 'CHECK_FILTER';
 export const INPUT_SEARCH = 'INPUT_SEARCH';
 // export const VIEW_LIST = 'VIEW_LIST';
 
-// export function ChangeInput(value){
-//     return{
-//         type: INPUT_CHANGE,
-//         playload: value,
-//     }
-// }
+export function CheckFilter(key){
+    return dispatch => {
+        dispatch({
+        type: CHECK_FILTER,
+        playload: key,
+        })
+    }
+}
 
 export function SearchInput(value){
     return dispatch => {

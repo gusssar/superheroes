@@ -1,16 +1,17 @@
 import { 
-    // INPUT_CHANGE,
+    CHECK_FILTER,
     INPUT_SEARCH,
 } from '../actions/InputActions';
 
 export const initialState = {
     value: '',
+    checkFilter: 'all',
 }
 
 export function inputReducer(state=initialState, action){
     switch (action.type) {
-        // case INPUT_CHANGE:
-        //     return {...state, value:action.playload}
+        case CHECK_FILTER:
+            return {...state, checkFilter:action.playload}
         case INPUT_SEARCH:
             return {...state, value: action.playloader}
         default:
