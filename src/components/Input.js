@@ -10,11 +10,10 @@ export class Input extends React.Component{
     }
 
     onClickSearch = () => {
-
+        this.props.SearchInput()
     }
 
     onChange = (event) => {
-        console.log(event.target.value)
         this.props.ChangeInput(event.target.value)
     }
 
@@ -35,4 +34,5 @@ export class Input extends React.Component{
 
 Input.propTypes = {
     ChangeInput: PropTypes.func.isRequired,
+    SearchInput: PropTypes.func.isRequired,
 }

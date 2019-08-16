@@ -19,7 +19,7 @@ export function dataListReducer(state = initialState, action){
         case SEND_REQUEST:
             return { ...state, isFetching: true }
         case REQUEST_SUCCESS:
-            return {...state, data:action.playload, isFetching: false, isInit: false }
+            return {...state, data:state.data.concat(action.playload), isFetching: false, isInit: false }
         default:
             return state
     }

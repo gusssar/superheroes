@@ -10,6 +10,7 @@ import { NeedGetRequest } from '../actions/DataListActions'
 
 import './App.css';
 import { ChangeInput } from '../actions/InputActions';
+import { SearchInput } from '../actions/InputActions';
 
 
 class App extends React.Component{
@@ -21,13 +22,16 @@ class App extends React.Component{
       setNumberOfHeroActions, 
       LoadListAction,
       DataLoadListAction,
-      ChangeInputAction
+      ChangeInputAction,
+      SearchInputAction,
     } = this.props;
  
     return(
       <div className='app'>
           <Header />
-          <Input ChangeInput={ChangeInputAction} />
+          <Input 
+            ChangeInput={ChangeInputAction} 
+            SearchInput={SearchInputAction}/>
           <List 
             isInit={isInit}
             data={data}
@@ -59,6 +63,7 @@ const mapDispatchToProps = dispatch => {
     LoadListAction: () => dispatch(LoadList()),
     DataLoadListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
     ChangeInputAction: (value) => dispatch(ChangeInput(value)),
+    SearchInputAction: () => dispatch(SearchInput())
   }
 }
 
