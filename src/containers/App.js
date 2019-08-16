@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Header } from '../components/Header';
+import { Input } from '../components/Input';
 import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
 import { setNumberOfHero } from '../actions/ListActions';
@@ -8,6 +9,7 @@ import { LoadList } from '../actions/ListActions';
 import { NeedGetRequest } from '../actions/DataListActions'
 
 import './App.css';
+import { ChangeInput } from '../actions/InputActions';
 
 
 class App extends React.Component{
@@ -18,11 +20,14 @@ class App extends React.Component{
       data, 
       setNumberOfHeroActions, 
       LoadListAction,
-      DataLoadListAction } = this.props;
+      DataLoadListAction,
+      ChangeInputAction
+    } = this.props;
  
     return(
       <div className='app'>
           <Header />
+          <Input ChangeInput={ChangeInputAction} />
           <List 
             isInit={isInit}
             data={data}
@@ -44,6 +49,7 @@ const mapStateToProps = store => {
     list: store.list,
     data: store.data,
     isInit: store.data.isInit,
+    input: store.input,
   }
 }
 
@@ -52,6 +58,7 @@ const mapDispatchToProps = dispatch => {
     setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
     LoadListAction: () => dispatch(LoadList()),
     DataLoadListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
+    ChangeInputAction: (value) => dispatch(ChangeInput(value)),
   }
 }
 

@@ -7,27 +7,24 @@ let arr = [];
 
 const reqURL = 'https://www.superheroapi.com/api.php/2304427089625919/';
 //последовательный запрос (приходит всё упорядоченно)
-function GetRequest(i,n,dispatch){
-        return fetch(reqURL+i,{mode:'cors'})
-                .then(response =>response.json())
-                .then(_json =>{
-                    arr.push(_json);
-                    if(i<n){
-                        console.log('---ифак тру---',i)
-                        i++;
-                        GetRequest(i,n,dispatch);
-                    } else {
-                        console.log('---ифак фолс---')
-                        dispatch({
-                            type: REQUEST_SUCCESS,
-                            playload: arr,
-                        })
-                        // dispatch({
-                        //     type: INITIALISATION,
-                        // })
-                    }
-                })
-}
+// function GetRequest(i,n,dispatch){
+//         return fetch(reqURL+i,{mode:'cors'})
+//                 .then(response =>response.json())
+//                 .then(_json =>{
+//                     arr.push(_json);
+//                     if(i<n){
+//                         console.log('---ифак тру---',i)
+//                         i++;
+//                         GetRequest(i,n,dispatch);
+//                     } else {
+//                         console.log('---ифак фолс---')
+//                         dispatch({
+//                             type: REQUEST_SUCCESS,
+//                             playload: arr,
+//                         })
+//                     }
+//                 })
+// }
 
 export function NeedGetRequest(i,n){
     return dispatch => {
