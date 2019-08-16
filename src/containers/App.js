@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Header } from '../components/Header/index';
-import { Input } from '../components/Input';
+import { Input } from '../components/Input/index';
 import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
 

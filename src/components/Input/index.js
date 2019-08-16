@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './index.css';
+
 export class Input extends React.Component{
 
     onEnterPress = (event) => {
@@ -20,13 +22,17 @@ export class Input extends React.Component{
     render(){
 
         return(
-            <div>
+            <div className='search'>
                 <input 
+                    className='search__input'
                     placeholder='Search hero by name...' 
                     onKeyPress={this.onEnterPress}
                     onChange={this.onChange}
                 ></input>
-                <button onClick={this.onClickSearch}>Search</button>
+                <button
+                    className='search__button'
+                    onClick={this.onClickSearch}
+                >Search</button>
             </div>
         )
     }
