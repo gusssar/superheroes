@@ -5,11 +5,12 @@
   background-color: #282c34;
 }
 
-.list{
-  display: inline-block
+.app__content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
-.filter{
-  /* display: inline-block; */
-  float: right;
-  width: 100px;
+
+.app__content .list{
+  flex-grow: 1;
 }

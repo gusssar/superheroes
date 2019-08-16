@@ -1,6 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
+import './index.css';
+
 
 export class SideBarFilter extends React.Component{
     onBtnClick = e => {
@@ -17,11 +19,13 @@ export class SideBarFilter extends React.Component{
     }
     render(){
         return(
-            <div className='filter'>
-                тут фильтрация
-                <button onClick={this.onBtnClick}>2</button>
-                <button onClick={this.onBtnClick}>3</button>
-                <button onClick={this.onLoadClick}>Load</button>
+            <div className='sidebar'>
+                <div className='sidebar__title'>Make filter here</div>
+                <form className='sidebar__alignment'>Alignment
+                    <div><input type='radio' className='radio' checked={true}/>  All</div>
+                    <div><input type='radio' className='radio' checked={false}/>  Good</div>
+                    <div><input type='radio' className='radio' checked={false}/>  Bad</div>
+                </form>
             </div>
         )
     }
