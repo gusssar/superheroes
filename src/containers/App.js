@@ -10,7 +10,7 @@ import { SideBarFilter } from '../components/SideBar/index';
 import { NeedGetRequest } from '../actions/DataListActions'
 
 // import { ChangeInput } from '../actions/InputActions';
-// import { SearchInput } from '../actions/InputActions';
+import { SearchInput } from '../actions/InputActions';
 import { NextPage } from '../actions/ListActions'
 
 import './App.css';
@@ -21,11 +21,12 @@ class App extends React.Component{
     const { 
       isInit,
       data, 
+      value,
       viewLine,
       LoadAllListAction,
-      NextPageAction
+      NextPageAction,
       // ChangeInputAction,
-      // SearchInputAction,
+      SearchInputAction,
       // ViewListAction,
       // input,
     } = this.props;
@@ -35,13 +36,14 @@ class App extends React.Component{
           <Header />
           <Input 
             // ChangeInput={ChangeInputAction} 
-            // SearchInput={SearchInputAction}
+            SearchInput={SearchInputAction}
             // value={input.value}
             />
           <div className='app__content'>
           <List 
             isInit={isInit}
             data={data}
+            value={value}
             viewLine={viewLine}
             LoadAllList={LoadAllListAction}
             NextPage={NextPageAction}
@@ -66,7 +68,7 @@ const mapStateToProps = store => {
     // list: store.list,
     data: store.data,
     isInit: store.data.isInit,
-    // input: store.input,
+    value: store.input.value,
     viewLine: store.displaylist.viewLine,
   }
 }
@@ -78,7 +80,7 @@ const mapDispatchToProps = dispatch => {
     LoadAllListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
     // ViewListAction: (value) => dispatch(ViewList(value)),
     // ChangeInputAction: (value) => dispatch(ChangeInput(value)),
-    // SearchInputAction: (value) => dispatch(SearchInput(value))
+    SearchInputAction: (value) => dispatch(SearchInput(value))
   }
 }
 

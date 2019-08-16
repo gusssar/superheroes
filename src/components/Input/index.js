@@ -9,14 +9,15 @@ export class Input extends React.Component{
         if(event.key === 'Enter'){
             console.log(event.target.value)
         }
+
     }
 
-    onClickSearch = () => {
-        // this.props.SearchInput(this.props.value)
-    }
+    // onClickSearch = () => {
+    //     this.props.SearchInput(this.props.value)
+    // }
 
     onChange = (event) => {
-        // this.props.ChangeInput(event.target.value)
+        this.props.SearchInput(event.target.value.toLowerCase())
     }
 
     render(){
@@ -26,7 +27,7 @@ export class Input extends React.Component{
                 <input 
                     className='search__input'
                     placeholder='Search hero by name...' 
-                    onKeyPress={this.onEnterPress}
+                    // onKeyPress={this.onEnterPress}
                     onChange={this.onChange}
                 ></input>
                 <button
@@ -40,6 +41,6 @@ export class Input extends React.Component{
 
 Input.propTypes = {
     // ChangeInput: PropTypes.func.isRequired,
-    // SearchInput: PropTypes.func.isRequired,
+    SearchInput: PropTypes.func.isRequired,
     // value: PropTypes.string.isRequired,
 }

@@ -16,18 +16,30 @@ export class List extends React.Component{
 
     render(){
         //принимаем пропс объекта
-        const { data, isInit, viewLine, NextPage } = this.props;
+        const { data, isInit, value, viewLine, NextPage } = this.props;
 
         //необходимое количество для показа
         //по дефолту 4
         function NeedItem(arr, val=4){
             let _item=[];
-            for (let _i=0; _i<val; _i++){
-                _item.push(
-                    <div key={_i} className='list__content__item'>
-                        <Item item={arr[_i]}/>
-                    </div>
-                )
+            if(value){
+                for (let _i=0; _i<val; _i++){
+                    if(arr[_i].name.toLowerCase().includes(value)){
+                        _item.push(
+                            <div key={_i} className='list__content__item'>
+                                <Item item={arr[_i]}/>
+                            </div>
+                        )
+                    }
+                }
+            } else {
+                for (let _i=0; _i<val; _i++){
+                        _item.push(
+                            <div key={_i} className='list__content__item'>
+                                <Item item={arr[_i]}/>
+                            </div>
+                        )
+                }
             }
             return _item;
         }
@@ -60,6 +72,7 @@ export class List extends React.Component{
 List.propTypes = {
     viewLine: PropTypes.number,
     data: PropTypes.object.isRequired,
+    value: PropTypes.string,
     isInit:PropTypes.bool.isRequired,
     LoadAllList: PropTypes.func.isRequired,
     NextPage: PropTypes.func.isRequired,
