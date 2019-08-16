@@ -1,5 +1,6 @@
 //надо добавить isomorphic-fetch в import
 import { FastGetRequest } from '../utils/getReq';
+// import { VIEW_LIST } from '../actions/InputActions';
 
 export const INITIALISATION = 'INITIALISATION';
 export const SEND_REQUEST = 'SEND_REQUEST';

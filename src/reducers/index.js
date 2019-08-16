@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { listReducer } from './list';
+import { displaylistReducer } from './list';
 import { dataListReducer } from './datalist';
 import { inputReducer } from './input';
 
 //комбинируем всередьюсеры в сторе
 export const rootReducer = combineReducers({
-    list: listReducer,//метод стора
+    displaylist: displaylistReducer,
     data: dataListReducer,
     input: inputReducer,
 })

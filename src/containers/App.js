@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { Header } from '../components/Header';
 import { Input } from '../components/Input';
 import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
-import { setNumberOfHero } from '../actions/ListActions';
-import { LoadList } from '../actions/ListActions';
+
+// import { setNumberOfHero } from '../actions/ListActions';
 import { NeedGetRequest } from '../actions/DataListActions'
 
-import './App.css';
-import { ChangeInput } from '../actions/InputActions';
-import { SearchInput } from '../actions/InputActions';
+// import { ChangeInput } from '../actions/InputActions';
+// import { SearchInput } from '../actions/InputActions';
+// import { ViewList } from '../actions/ListActions'
 
+import './App.css';
 
 class App extends React.Component{
   
@@ -19,29 +21,36 @@ class App extends React.Component{
     const { 
       isInit,
       data, 
-      setNumberOfHeroActions, 
-      LoadListAction,
-      DataLoadListAction,
-      ChangeInputAction,
-      SearchInputAction,
+      // setNumberOfHeroActions, 
+      // LoadListAction,
+      LoadAllListAction,
+      // ChangeInputAction,
+      // SearchInputAction,
+      // ViewListAction,
+      // input,
     } = this.props;
  
     return(
       <div className='app'>
           <Header />
           <Input 
-            ChangeInput={ChangeInputAction} 
-            SearchInput={SearchInputAction}/>
+            // ChangeInput={ChangeInputAction} 
+            // SearchInput={SearchInputAction}
+            // value={input.value}
+            />
           <List 
             isInit={isInit}
             data={data}
-            GetDataList={DataLoadListAction}/>
+            LoadAllList={LoadAllListAction}
+            // ViewList={ViewListAction}
+            />
           <SideBarFilter 
-            data={data}
-            setNumberOfHero={setNumberOfHeroActions} 
-            LoadList={LoadListAction}
-            isFetching={data.isFetching}
-            GetDataList={DataLoadListAction}/>
+            // data={data}
+            // setNumberOfHero={setNumberOfHeroActions} 
+            // LoadList={LoadListAction}
+            // isFetching={data.isFetching}
+            // LoadAllList={LoadAllListAction}
+            />
       </div>
     )
   }
@@ -59,11 +68,11 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
-    LoadListAction: () => dispatch(LoadList()),
-    DataLoadListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
-    ChangeInputAction: (value) => dispatch(ChangeInput(value)),
-    SearchInputAction: () => dispatch(SearchInput())
+    // setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
+    LoadAllListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
+    // ViewListAction: (value) => dispatch(ViewList(value)),
+    // ChangeInputAction: (value) => dispatch(ChangeInput(value)),
+    // SearchInputAction: (value) => dispatch(SearchInput(value))
   }
 }
 
