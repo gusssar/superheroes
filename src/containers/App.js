@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Header } from '../components/Header';
+import { Header } from '../components/Header/index';
 import { Input } from '../components/Input';
 import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
