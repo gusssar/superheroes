@@ -6,6 +6,7 @@ export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 let arr = [];
 
 const reqURL = 'https://www.superheroapi.com/api.php/2304427089625919/';
+//последовательный запрос (приходит всё упорядоченно)
 function GetRequest(i,n,dispatch){
         return fetch(reqURL+i,{mode:'cors'})
                 .then(response =>response.json())
@@ -21,9 +22,9 @@ function GetRequest(i,n,dispatch){
                             type: REQUEST_SUCCESS,
                             playload: arr,
                         })
-                        dispatch({
-                            type: INITIALISATION,
-                        })
+                        // dispatch({
+                        //     type: INITIALISATION,
+                        // })
                     }
                 })
 }
@@ -34,6 +35,26 @@ export function NeedGetRequest(i,n){
             type: SEND_REQUEST,
         })
             //запускаем опросник
-            GetRequest(i,n,dispatch)
+            FastGetRequest(i,n,dispatch);
+            //ждём подгрузки данных 2 секунды
+            setTimeout(()=>{
+                dispatch({
+                    type: REQUEST_SUCCESS,
+                    playload: arr,
+                })
+                dispatch({
+                    type: INITIALISATION,
+                })
+            },2000)
+        }
+}
+//параллельный запрос (в разброс всё)
+//надо сортировать
+function FastGetRequest(i,n,dispatch){
+    for(i;i<=n;i++){
+        fetch(reqURL+i,{mode:'cors'})
+        .then(response=>response.json())
+        .then(_json=> {arr.push(_json)})
     }
+
 }

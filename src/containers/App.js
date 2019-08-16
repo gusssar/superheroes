@@ -5,7 +5,6 @@ import { List } from '../components/List';
 import { SideBarFilter } from '../components/SideBarFilter';
 import { setNumberOfHero } from '../actions/ListActions';
 import { LoadList } from '../actions/ListActions';
-// import MakeReq from './Server';
 import { NeedGetRequest } from '../actions/DataListActions'
 
 import './App.css';
@@ -15,7 +14,7 @@ class App extends React.Component{
   
   render(){
     const { 
-      // list,
+      isInit,
       data, 
       setNumberOfHeroActions, 
       LoadListAction,
@@ -25,6 +24,7 @@ class App extends React.Component{
       <div className='app'>
           <Header />
           <List 
+            isInit={isInit}
             data={data}
             GetDataList={DataLoadListAction}/>
           <SideBarFilter 
@@ -43,6 +43,7 @@ const mapStateToProps = store => {
   return {
     list: store.list,
     data: store.data,
+    isInit: store.data.isInit,
   }
 }
 

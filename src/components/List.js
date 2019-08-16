@@ -7,18 +7,18 @@ export class List extends React.Component{
     // для первого инита подгружаем начальные данные
     // 12 персонажей
     componentDidMount(){
-        if(this.props.data.isInit){
+        if(this.props.isInit){
             this.props.GetDataList(1, 12);
         }
     }
 
     render(){
         //принимаем пропс объекта
-        const { data } = this.props;
+        const { data, isInit } = this.props;
 
-        //если это первый инит ставим прелоадер
+        //если это первый инит ставим спинер
         //иначе разбираем массив из стора
-        const item = (data.isInit)?
+        const item = (isInit)?
         <p>Загрузка...</p>:
         data.data.map((el,i) =>
             <div key={i} style={{width:'240px', display:'inline-block'}}>
@@ -37,4 +37,5 @@ export class List extends React.Component{
 List.propTypes = {
     data: PropTypes.object.isRequired,
     GetDataList: PropTypes.func.isRequired,
+    isInit:PropTypes.bool.isRequired,
 }

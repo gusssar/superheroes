@@ -15,7 +15,7 @@ export const initialState = {
 export function dataListReducer(state = initialState, action){
     switch (action.type) {
         case INITIALISATION:
-            return {...state, isInit: false}
+            return {...state}
         case SEND_REQUEST:
             return { ...state, isFetching: true }
         case REQUEST_SUCCESS:
