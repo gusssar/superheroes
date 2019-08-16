@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Item } from './Item';
+import { Item } from '../Item';
+
+import './index.css';
 
 export class List extends React.Component{
 
@@ -22,7 +24,7 @@ export class List extends React.Component{
             let _item=[];
             for (let _i=0; _i<val; _i++){
                 _item.push(
-                    <div key={_i} style={{width:'240px', display:'inline-block'}}>
+                    <div key={_i} className='list__content__item'>
                         <Item item={arr[_i]}/>
                     </div>
                 )
@@ -44,8 +46,12 @@ export class List extends React.Component{
         
         return(
             <div className='list'>
-                {item}
-                <button onClick={onNextPage}>Ещё</button>
+                <div className='list__content'>
+                    {item}
+                </div>
+                <div className='list__next'>
+                    <button onClick={onNextPage}>Ещё</button>
+                </div>
             </div>
         )
     }

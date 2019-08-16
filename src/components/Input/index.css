@@ -24,3 +24,7 @@
     font-size: 16px;
     height: 34px;
 }
+
+.search__button:hover{
+    background-color: #3c4f74;
+}

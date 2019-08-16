@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Header } from '../components/Header/index';
 import { Input } from '../components/Input/index';
-import { List } from '../components/List';
+import { List } from '../components/List/index';
 import { SideBarFilter } from '../components/SideBar/index';
 
 // import { setNumberOfHero } from '../actions/ListActions';
