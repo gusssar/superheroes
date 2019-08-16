@@ -9,13 +9,12 @@ export class List extends React.Component{
     componentDidMount(){
         if(this.props.isInit){
             this.props.LoadAllList(1, 12);
-            // this.props.ViewList(4);
         }
     }
 
     render(){
         //принимаем пропс объекта
-        const { data, isInit } = this.props;
+        const { data, isInit, viewLine, NextPage } = this.props;
 
         //необходимое количество для показа
         //по дефолту 4
@@ -32,7 +31,11 @@ export class List extends React.Component{
         }
 
         //отображем что надо покзать
-        const need_item = NeedItem(data.data, 4)
+        const need_item = NeedItem(data.data, viewLine)
+
+        function onNextPage(){
+            NextPage()
+        }
 
         //если это первый инит ставим спинер
         //иначе разбираем массив из стора
@@ -41,15 +44,17 @@ export class List extends React.Component{
         
         return(
             <div className='list'>
-                {item} 
+                {item}
+                <button onClick={onNextPage}>Ещё</button>
             </div>
         )
     }
 }
 
 List.propTypes = {
+    viewLine: PropTypes.number,
     data: PropTypes.object.isRequired,
     isInit:PropTypes.bool.isRequired,
     LoadAllList: PropTypes.func.isRequired,
-    // ViewList: PropTypes.func.isRequired,
+    NextPage: PropTypes.func.isRequired,
 }

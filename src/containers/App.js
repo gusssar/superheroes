@@ -11,19 +11,19 @@ import { NeedGetRequest } from '../actions/DataListActions'
 
 // import { ChangeInput } from '../actions/InputActions';
 // import { SearchInput } from '../actions/InputActions';
-// import { ViewList } from '../actions/ListActions'
+import { NextPage } from '../actions/ListActions'
 
 import './App.css';
 
 class App extends React.Component{
-  
+
   render(){
     const { 
       isInit,
       data, 
-      // setNumberOfHeroActions, 
-      // LoadListAction,
+      viewLine,
       LoadAllListAction,
+      NextPageAction
       // ChangeInputAction,
       // SearchInputAction,
       // ViewListAction,
@@ -39,9 +39,12 @@ class App extends React.Component{
             // value={input.value}
             />
           <List 
+
             isInit={isInit}
             data={data}
+            viewLine={viewLine}
             LoadAllList={LoadAllListAction}
+            NextPage={NextPageAction}
             // ViewList={ViewListAction}
             />
           <SideBarFilter 
@@ -59,16 +62,18 @@ class App extends React.Component{
 const mapStateToProps = store => {
   console.log(store);
   return {
-    list: store.list,
+    // list: store.list,
     data: store.data,
     isInit: store.data.isInit,
-    input: store.input,
+    // input: store.input,
+    viewLine: store.displaylist.viewLine,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
     // setNumberOfHeroActions: number => dispatch(setNumberOfHero(number)),
+    NextPageAction: () => dispatch(NextPage()),
     LoadAllListAction: (start, end) => dispatch(NeedGetRequest(start, end)),
     // ViewListAction: (value) => dispatch(ViewList(value)),
     // ChangeInputAction: (value) => dispatch(ChangeInput(value)),

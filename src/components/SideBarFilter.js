@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 export class SideBarFilter extends React.Component{
@@ -16,14 +16,12 @@ export class SideBarFilter extends React.Component{
         // }
     }
     render(){
-        // const { isFetching } = this.props;
         return(
             <div className='filter'>
                 тут фильтрация
                 <button onClick={this.onBtnClick}>2</button>
                 <button onClick={this.onBtnClick}>3</button>
                 <button onClick={this.onLoadClick}>Load</button>
-                {/* {isFetching? <p>TRUE</p>: <p>FALSE</p>} */}
             </div>
         )
     }
@@ -31,7 +29,6 @@ export class SideBarFilter extends React.Component{
 
 SideBarFilter.propTypes = {
     // setNumberOfHero: PropTypes.func.isRequired,
-    // isFetching: PropTypes.bool.isRequired,
     // LoadAllList: PropTypes.func.isRequired,
     // data: PropTypes.object.isRequired,
 }
